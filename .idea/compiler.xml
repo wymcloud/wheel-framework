@@ -6,11 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="wheel-framework" />
+        <module name="wheel-ioc" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="wheel-framework" target="1.5" />
+      <module name="wheel-ioc" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>
