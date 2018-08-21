@@ -16,6 +16,8 @@ public abstract class AbstractBeanFactory implements BeanFactory {
 
     private final Map<String, BeanDefinition> beanNameDefinitionMap = new ConcurrentHashMap<String, BeanDefinition>();
 
+    private final List<String> beanDefinitionIds = new ArrayList<String>();
+
     private final List<BeanPostProcessor> beanPostProcessors = new ArrayList<BeanPostProcessor>();
 
     public Object getBean(String name) throws Exception {
@@ -48,5 +50,14 @@ public abstract class AbstractBeanFactory implements BeanFactory {
         if(bean instanceof BeanFactoryAware) {
             ((BeanFactoryAware) bean).setBeanFactory(this);
         }
+    }
+
+    @Override
+    public void registerBeanDefinition(String name, BeanDefinition beanDefinition) {
+        if(beanNameDefinitionMap.containsKey(name)) {
+            throw new IllegalArgumentException("Bean name " + name + " must be unique");
+        }
+        beanNameDefinitionMap.put(name, beanDefinition);
+        beanDefinitionIds.add(name);
     }
 }
